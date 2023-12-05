@@ -1,0 +1,30 @@
+body {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* Nav bar */
+#nav-bar {
+  border: solid black 1px;
+  height: 10vw;
+  width: 100%;
+}
+
+#sort-container {
+  border: solid black 1px;
+  height: 25vw;
+  width: 25vw;
+  display: flex;
+
+}
+
+.element {
+  border: solid black 1px;
+  position: relative;
+  height: 100%;
+  width: 5%;
+  background-color: yellow;
+}
