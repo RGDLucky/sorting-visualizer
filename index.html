@@ -7,13 +7,20 @@
   <body>
     <nav id="nav-bar">
       <div id="sort-select">
-        <input type="radio" />
+        <input type="radio" id="merge" name="sort" checked />
+        <label for="merge">Mergesort</label>
+        <input type="radio" id="quick" name="sort" />
+        <label for="quick">Quick sort</label>
+        <input type="radio" id="selection" name="sort" />
+        <label for="selection">Selection sort</label>
+        <input type="radio" id="insertion" name="sort" />
+        <label for="insertion">Insertion sort</label>
       </div>
       <div id="random">
-        <input type="button" name="randomize" />
+        <input type="button" name="randomize" value="randomize" />
       </div>
       <div id="number-of-elements">
-        <input />
+        <input placeholder="enter number of elements here" />
       </div>
     </nav>
 
