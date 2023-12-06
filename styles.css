@@ -3,22 +3,26 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0;
 }
 
 
 /* Nav bar */
 #nav-bar {
   border: solid black 1px;
-  height: 10vw;
+  height: 5vw;
   width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #72A0C1;
 }
 
 #sort-container {
   border: solid black 1px;
   height: 25vw;
-  width: 25vw;
+  width: 50vw;
   display: flex;
-
+  margin-bottom: 0;
 }
 
 .element {
