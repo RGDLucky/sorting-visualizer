@@ -1,9 +1,12 @@
 let elements = document.getElementsByClassName(".element");
 let randomButton = document.getElementById("random-button");
+let sortButton = document.getElementById("sort");
 
 random();
 // Event Listeners
 randomButton.addEventListener("click", () => random());
+
+sortButton.addEventListener("click", () => {});
 
 // Randomize elements in array
 function random() {
