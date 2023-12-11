@@ -1,10 +1,16 @@
 let elements = document.getElementsByClassName(".element");
 let randomButton = document.getElementById("random-button");
 let sortButton = document.getElementById("sort");
+let enterButton = document.getElementById("enter-number");
 
 random();
 // Event Listeners
 randomButton.addEventListener("click", () => random());
+
+enterButton.addEventListener("click", () => {
+  let number = document.getElementById("number-field");
+  console.log(number.value);
+});
 
 sortButton.addEventListener("click", () => {
   let selected = document.querySelector('input[type="radio"]:checked');
