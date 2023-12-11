@@ -6,7 +6,25 @@ random();
 // Event Listeners
 randomButton.addEventListener("click", () => random());
 
-sortButton.addEventListener("click", () => {});
+sortButton.addEventListener("click", () => {
+  let selected = document.querySelector('input[type="radio"]:checked');
+  switch (selected.value) {
+    case "insertion":
+      insertionSort();
+      break;
+    case "merge":
+      mergeSort();
+      break;
+    case "quick":
+      quickSort();
+      break;
+    case "selection":
+      selectionSort();
+      break;
+    default:
+      console.log("Something went wrong with the radio buttons");
+  }
+});
 
 // Randomize elements in array
 function random() {
@@ -21,4 +39,21 @@ function random() {
 // Sorting
 
 // Insertion Sort
-function insertionSort() {}
+function insertionSort() {
+  console.log("insertion sort");
+}
+
+// Selection Sort
+function selectionSort() {
+  console.log("selection sort");
+}
+
+// Merge sort
+function mergeSort() {
+  console.log("merge sort");
+}
+
+// Quick sort
+function quickSort() {
+  console.log("quick sort");
+}
