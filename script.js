@@ -71,6 +71,27 @@ function insertionSort(arr) {
 // Selection Sort
 function selectionSort(arr) {
   console.log("selection sort");
+  for (let i = 0; i < arr.length - 1; i++) {
+    let min_index = i;
+    for (let j = i + 1; j < arr.length; j++) {
+      let element1 = arr[j].style.height.substring(0, arr[j].length);
+      let element2 = arr[min_index].style.height.substring(
+        0,
+        arr[min_index].length,
+      );
+      // console.log(element1);
+      if (parseFloat(element1) < parseFloat(element2)) {
+        min_index = j;
+      }
+    }
+    for (let k = 0; k < min_index - i; k++) {
+      arr[i].style.transform = "translateX(100%)";
+      arr[min_index].style.transform = "translateX(-100%)";
+    }
+    let temp = arr[i];
+    arr[i] = arr[min_index];
+    arr[min_index] = temp;
+  }
 }
 
 // Merge sort
