@@ -50,7 +50,8 @@ body {
   border: solid black 1px;
   height: 25vw;
   width: 50vw;
-  display: flex;
+  display: grid;
+  grid-column: 0;
   margin-bottom: 0;
 }
 
