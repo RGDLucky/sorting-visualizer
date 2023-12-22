@@ -48,7 +48,7 @@ function random() {
 // Insertion Sort
 function insertionSort(arr) {
   console.log("insertion sort");
-  for (let i = 1; i < arr.length - 1; i++) {
+  for (let i = 1; i < arr.length; i++) {
     //console.log(arr.length);
     for (let j = i - 1; j >= 0; j--) {
       let element1 = arr[j].style.height.substring(0, arr[j].length);
@@ -61,10 +61,21 @@ function insertionSort(arr) {
       //console.log(distance);
       arr[j].style.transform = "translateX(100%)";
       arr[j + 1].style.transform = "translateX(-100%)";
+      //let x1 = arr[j].style.left;
+      //let x2 = arr[j + 1].style.left;
+      //console.log(arr[j].x);
+      //console.log(x2);
+      //arr[j].style.left = x2;
+      //arr[j + 1].style.left = x1;
+
       let temp = arr[j];
       arr[j] = arr[j + 1];
       arr[j + 1] = temp;
     }
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i].style.left);
   }
 }
 
@@ -103,3 +114,5 @@ function mergeSort(arr) {
 function quickSort(arr) {
   console.log("quick sort");
 }
+
+// do element.x
