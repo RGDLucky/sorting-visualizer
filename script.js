@@ -32,7 +32,11 @@ sortButton.addEventListener("click", () => {
     default:
       console.log("Something went wrong with the radio buttons");
   }
+
   swapElements(elementArray, swap);
+  for (let i = 0; i < elementArray.length; i++) {
+    console.log(elementArray[i].style.height);
+  }
 });
 
 function swapElements(arr, swaps) {
@@ -41,6 +45,7 @@ function swapElements(arr, swaps) {
     let tempHeight = arr[swaps[i][0]].style.height;
     arr[swaps[i][0]].style.height = arr[swaps[i][1]].style.height;
     arr[swaps[i][1]].style.height = tempHeight;
+    //arr = Array.from(document.querySelectorAll(".element"));
   }
 }
 
