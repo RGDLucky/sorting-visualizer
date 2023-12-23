@@ -21,13 +21,13 @@ sortButton.addEventListener("click", () => {
       swap = insertionSort(elementArray.map((x) => x));
       break;
     case "merge":
-      mergeSort(elementArray);
+      swap = mergeSort(elementArray);
       break;
     case "quick":
-      quickSort(elementArray);
+      swap = quickSort(elementArray);
       break;
     case "selection":
-      selectionSort(elementArray);
+      swap = selectionSort(elementArray);
       break;
     default:
       console.log("Something went wrong with the radio buttons");
@@ -40,16 +40,22 @@ sortButton.addEventListener("click", () => {
 });
 
 function swapElements(arr, swaps) {
+  let time = 1000;
   for (let i = 0; i < swaps.length; i++) {
     //console.log(swaps[i][0]);
-    let tempHeight = arr[swaps[i][0]].style.height;
-    arr[swaps[i][0]].style.height = arr[swaps[i][1]].style.height;
-    arr[swaps[i][1]].style.height = tempHeight;
+    setTimeout(function () {
+      // arr[swaps[i][0]].style.background = "red";
+      let tempHeight = arr[swaps[i][0]].style.height;
+      arr[swaps[i][0]].style.height = arr[swaps[i][1]].style.height;
+      arr[swaps[i][1]].style.height = tempHeight;
 
-    let tempBottom = arr[swaps[i][0]].style.bottom;
-    arr[swaps[i][0]].style.bottom = arr[swaps[i][1]].style.bottom;
-    arr[swaps[i][1]].style.bottom = tempBottom;
-    //arr = Array.from(document.querySelectorAll(".element"));
+      let tempBottom = arr[swaps[i][0]].style.bottom;
+      arr[swaps[i][0]].style.bottom = arr[swaps[i][1]].style.bottom;
+      arr[swaps[i][1]].style.bottom = tempBottom;
+      //arr = Array.from(document.querySelectorAll(".element"));
+    }, time);
+    // arr[swaps[i][0]].style.background = "yellow";
+    time += 1000;
   }
 }
 
@@ -103,9 +109,9 @@ function insertionSort(arr) {
     }
   }
 
-  for (let i = 0; i < arr.length; i++) {
-    console.log(arr[i].style.height);
-  }
+  //for (let i = 0; i < arr.length; i++) {
+  //console.log(arr[i].style.height);
+  //}
 
   return swap;
 }
