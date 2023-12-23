@@ -15,9 +15,10 @@ enterButton.addEventListener("click", () => {
 sortButton.addEventListener("click", () => {
   let selected = document.querySelector('input[type="radio"]:checked');
   let elementArray = Array.from(document.querySelectorAll(".element"));
+  let swap = [];
   switch (selected.value) {
     case "insertion":
-      insertionSort(elementArray);
+      swap = insertionSort(elementArray.map((x) => x));
       break;
     case "merge":
       mergeSort(elementArray);
@@ -31,7 +32,17 @@ sortButton.addEventListener("click", () => {
     default:
       console.log("Something went wrong with the radio buttons");
   }
+  swapElements(elementArray, swap);
 });
+
+function swapElements(arr, swaps) {
+  for (let i = 0; i < swaps.length; i++) {
+    //console.log(swaps[i][0]);
+    let tempHeight = arr[swaps[i][0]].style.height;
+    arr[swaps[i][0]].style.height = arr[swaps[i][1]].style.height;
+    arr[swaps[i][1]].style.height = tempHeight;
+  }
+}
 
 // Randomize elements in array
 function random() {
@@ -41,7 +52,7 @@ function random() {
     element.style.height = new_height + "%";
     let new_top = 100 - new_height;
     element.style.bottom = "-" + new_top + "%";
-    //element.style.bottom = 0;
+    element.style.bottom = 0;
     //element.style.top = "100%";
     let move = count * 100;
     element.style.transform = "translateX(" + move + "%)";
@@ -54,35 +65,40 @@ function random() {
 // Insertion Sort
 function insertionSort(arr) {
   console.log("insertion sort");
+  let swap = [];
   for (let i = 1; i < arr.length; i++) {
     //console.log(arr.length);
     for (let j = i - 1; j >= 0; j--) {
       let element1 = arr[j].style.height.substring(0, arr[j].length);
       let element2 = arr[j + 1].style.height.substring(0, arr[j + 1].length);
       // console.log(element1);
-      if (parseFloat(element1) < parseFloat(element2)) {
-        break;
+      if (parseFloat(element1) > parseFloat(element2)) {
+        //let distance = 100 / arr.length;
+        //console.log(distance);
+        //arr[j].style.transform = "translateX(100%)";
+        //arr[j + 1].style.transform = "translateX(-100%)";
+        //let x1 = arr[j].style.left;
+        //let x2 = arr[j + 1].style.left;
+        //console.log(arr[j].x);
+        //console.log(x2);
+        //arr[j].style.left = x2;
+        //arr[j + 1].style.left = x1;
+        swap.push([j, i]);
+        //let tempHeight = arr[j].style.height;
+        //arr[j].style.height = arr[j + 1].style.height;
+        //arr[j + 1].style.height = tempHeight;
+        let temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
       }
-      //let distance = 100 / arr.length;
-      //console.log(distance);
-      arr[j].style.transform = "translateX(100%)";
-      arr[j + 1].style.transform = "translateX(-100%)";
-      //let x1 = arr[j].style.left;
-      //let x2 = arr[j + 1].style.left;
-      //console.log(arr[j].x);
-      //console.log(x2);
-      //arr[j].style.left = x2;
-      //arr[j + 1].style.left = x1;
-
-      let temp = arr[j];
-      arr[j] = arr[j + 1];
-      arr[j + 1] = temp;
     }
   }
 
   for (let i = 0; i < arr.length; i++) {
-    console.log(arr[i].style.left);
+    console.log(arr[i].style.height);
   }
+
+  return swap;
 }
 
 // Selection Sort
