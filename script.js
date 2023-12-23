@@ -45,23 +45,27 @@ function swapElements(arr, swaps) {
     let tempHeight = arr[swaps[i][0]].style.height;
     arr[swaps[i][0]].style.height = arr[swaps[i][1]].style.height;
     arr[swaps[i][1]].style.height = tempHeight;
+
+    let tempBottom = arr[swaps[i][0]].style.bottom;
+    arr[swaps[i][0]].style.bottom = arr[swaps[i][1]].style.bottom;
+    arr[swaps[i][1]].style.bottom = tempBottom;
     //arr = Array.from(document.querySelectorAll(".element"));
   }
 }
 
 // Randomize elements in array
 function random() {
-  let count = 0;
+  //let count = 0;
   Array.from(document.querySelectorAll(".element")).forEach(function (element) {
     let new_height = Math.random() * 100;
     element.style.height = new_height + "%";
     let new_top = 100 - new_height;
     element.style.bottom = "-" + new_top + "%";
-    element.style.bottom = 0;
+    //element.style.bottom = 0;
     //element.style.top = "100%";
-    let move = count * 100;
-    element.style.transform = "translateX(" + move + "%)";
-    count++;
+    //let move = count * 100;
+    //element.style.transform = "translateX(" + move + "%)";
+    //count++;
   });
 }
 
@@ -88,7 +92,7 @@ function insertionSort(arr) {
         //console.log(x2);
         //arr[j].style.left = x2;
         //arr[j + 1].style.left = x1;
-        swap.push([j, i]);
+        swap.push([j, j + 1]);
         //let tempHeight = arr[j].style.height;
         //arr[j].style.height = arr[j + 1].style.height;
         //arr[j + 1].style.height = tempHeight;
