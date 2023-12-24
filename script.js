@@ -31,6 +31,7 @@ sortButton.addEventListener("click", () => {
         0,
         elementArray.length - 1,
       );
+      // swaps.reverse();
       break;
     case "selection":
       swaps = selectionSort(elementArray.map((x) => x));
@@ -38,9 +39,9 @@ sortButton.addEventListener("click", () => {
     default:
       console.log("Something went wrong with the radio buttons");
   }
-
+  //console.log(swaps);
   swapElements(elementArray);
-  console.log(swaps.length);
+  //console.log(swaps.length);
   for (let i = 0; i < swaps.length; i++) {
     console.log(swaps[i]);
   }
@@ -172,17 +173,24 @@ function quickSort(arr, low, high) {
   //console.log("check");
   if (low < high) {
     let pi = quickSortPartition(arr, low, high);
+    //console.log(pi);
     quickSort(arr, low, pi - 1);
     quickSort(arr, pi + 1, high);
   }
+  //console.log("beginning");
+  //for (let i = 0; i < arr.length; i++) {
+  //console.log(arr[i].style.height);
+  //}
 }
+
+// the problem is with swaps
 
 function quickSortPartition(arr, low, high) {
   let pivot = arr[high].style.height.substring(0, arr[high].length);
   let i = low - 1;
   //console.log("check");
   for (let j = low; j <= high - 1; j++) {
-    console.log("check");
+    //console.log("check");
     let element1 = arr[j].style.height.substring(0, arr[j].length);
     if (parseFloat(element1) < parseFloat(pivot)) {
       i++;
@@ -191,6 +199,7 @@ function quickSortPartition(arr, low, high) {
     }
   }
 
+  swaps.push([i + 1, high]);
   [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
   return i + 1;
 }
