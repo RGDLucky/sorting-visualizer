@@ -21,10 +21,10 @@ sortButton.addEventListener("click", () => {
       swap = insertionSort(elementArray.map((x) => x));
       break;
     case "merge":
-      swap = mergeSort(elementArray);
+      swap = mergeSort(elementArray.map((x) => x));
       break;
     case "quick":
-      swap = quickSort(elementArray);
+      swap = quickSort(elementArray((x) => x));
       break;
     case "selection":
       swap = selectionSort(elementArray.map((x) => x));
@@ -44,6 +44,10 @@ function swapElements(arr, swaps) {
   for (let i = 0; i < swaps.length; i++) {
     //console.log(swaps[i][0]);
     setTimeout(function () {
+      arr[swaps[i][0]].style.background = "red";
+      arr[swaps[i][1]].style.background = "red";
+    }, time - 500);
+    setTimeout(function () {
       // arr[swaps[i][0]].style.background = "red";
       let tempHeight = arr[swaps[i][0]].style.height;
       arr[swaps[i][0]].style.height = arr[swaps[i][1]].style.height;
@@ -52,8 +56,14 @@ function swapElements(arr, swaps) {
       let tempBottom = arr[swaps[i][0]].style.bottom;
       arr[swaps[i][0]].style.bottom = arr[swaps[i][1]].style.bottom;
       arr[swaps[i][1]].style.bottom = tempBottom;
+      //arr[swaps[i][0]].style.background = "yellow";
+      //arr[swaps[i][1]].style.background = "yellow";
       //arr = Array.from(document.querySelectorAll(".element"));
     }, time);
+    setTimeout(function () {
+      arr[swaps[i][0]].style.background = "yellow";
+      arr[swaps[i][1]].style.background = "yellow";
+    }, time + 500);
     // arr[swaps[i][0]].style.background = "yellow";
     time += 1000;
   }
