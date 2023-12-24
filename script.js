@@ -27,7 +27,7 @@ sortButton.addEventListener("click", () => {
       swap = quickSort(elementArray);
       break;
     case "selection":
-      swap = selectionSort(elementArray);
+      swap = selectionSort(elementArray.map((x) => x));
       break;
     default:
       console.log("Something went wrong with the radio buttons");
@@ -119,6 +119,7 @@ function insertionSort(arr) {
 // Selection Sort
 function selectionSort(arr) {
   console.log("selection sort");
+  let swap = [];
   for (let i = 0; i < arr.length - 1; i++) {
     let min_index = i;
     for (let j = i + 1; j < arr.length; j++) {
@@ -132,14 +133,16 @@ function selectionSort(arr) {
         min_index = j;
       }
     }
-    for (let k = 0; k < min_index - i; k++) {
-      arr[i].style.transform = "translateX(100%)";
-      arr[min_index].style.transform = "translateX(-100%)";
-    }
+    //for (let k = 0; k < min_index - i; k++) {
+    //arr[i].style.transform = "translateX(100%)";
+    //arr[min_index].style.transform = "translateX(-100%)";
+    //}
+    swap.push([i, min_index]);
     let temp = arr[i];
     arr[i] = arr[min_index];
     arr[min_index] = temp;
   }
+  return swap;
 }
 
 // Merge sort
