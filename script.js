@@ -3,6 +3,8 @@ let randomButton = document.getElementById("random-button");
 let sortButton = document.getElementById("sort");
 let enterButton = document.getElementById("enter-number");
 
+let swaps = [];
+
 random();
 // Event Listeners
 randomButton.addEventListener("click", () => random());
@@ -15,31 +17,36 @@ enterButton.addEventListener("click", () => {
 sortButton.addEventListener("click", () => {
   let selected = document.querySelector('input[type="radio"]:checked');
   let elementArray = Array.from(document.querySelectorAll(".element"));
-  let swap = [];
+  swaps = [];
   switch (selected.value) {
     case "insertion":
-      swap = insertionSort(elementArray.map((x) => x));
+      swaps = insertionSort(elementArray.map((x) => x));
       break;
     case "merge":
-      swap = mergeSort(elementArray.map((x) => x));
+      swaps = mergeSort(elementArray.map((x) => x));
       break;
     case "quick":
-      swap = quickSort(elementArray((x) => x));
+      quickSort(
+        elementArray.map((x) => x),
+        0,
+        elementArray.length - 1,
+      );
       break;
     case "selection":
-      swap = selectionSort(elementArray.map((x) => x));
+      swaps = selectionSort(elementArray.map((x) => x));
       break;
     default:
       console.log("Something went wrong with the radio buttons");
   }
 
-  swapElements(elementArray, swap);
-  for (let i = 0; i < elementArray.length; i++) {
-    console.log(elementArray[i].style.height);
+  swapElements(elementArray);
+  console.log(swaps.length);
+  for (let i = 0; i < swaps.length; i++) {
+    console.log(swaps[i]);
   }
 });
 
-function swapElements(arr, swaps) {
+function swapElements(arr) {
   let time = 1000;
   for (let i = 0; i < swaps.length; i++) {
     //console.log(swaps[i][0]);
@@ -161,8 +168,29 @@ function mergeSort(arr) {
 }
 
 // Quick sort
-function quickSort(arr) {
-  console.log("quick sort");
+function quickSort(arr, low, high) {
+  //console.log("check");
+  if (low < high) {
+    let pi = quickSortPartition(arr, low, high);
+    quickSort(arr, low, pi - 1);
+    quickSort(arr, pi + 1, high);
+  }
 }
 
-// do element.x
+function quickSortPartition(arr, low, high) {
+  let pivot = arr[high].style.height.substring(0, arr[high].length);
+  let i = low - 1;
+  //console.log("check");
+  for (let j = low; j <= high - 1; j++) {
+    console.log("check");
+    let element1 = arr[j].style.height.substring(0, arr[j].length);
+    if (parseFloat(element1) < parseFloat(pivot)) {
+      i++;
+      swaps.push([i, j]);
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+  }
+
+  [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
+  return i + 1;
+}
