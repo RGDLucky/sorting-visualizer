@@ -21,9 +21,15 @@ sortButton.addEventListener("click", () => {
   switch (selected.value) {
     case "insertion":
       swaps = insertionSort(elementArray.map((x) => x));
+      swapElements(elementArray);
       break;
     case "merge":
-      swaps = mergeSort(elementArray.map((x) => x));
+      mergeSort(
+        elementArray.map((x) => x),
+        0,
+        elementArray.length,
+      );
+      mergeSwap(elementArray);
       break;
     case "quick":
       quickSort(
@@ -31,16 +37,17 @@ sortButton.addEventListener("click", () => {
         0,
         elementArray.length - 1,
       );
+      swapElements(elementArray);
       // swaps.reverse();
       break;
     case "selection":
       swaps = selectionSort(elementArray.map((x) => x));
+      swapElements(elementArray);
       break;
     default:
       console.log("Something went wrong with the radio buttons");
   }
   //console.log(swaps);
-  swapElements(elementArray);
   //console.log(swaps.length);
   for (let i = 0; i < swaps.length; i++) {
     console.log(swaps[i]);
@@ -51,9 +58,22 @@ function mergeSwap(arr) {
   let time = 1000;
   for (let i = 0; i < swaps.length; i++) {
     let index = swaps[i][0];
-    setTimeout(function () {}, time - 500);
-    setTimeout(function () {}, time);
-    setTimeout(function () {}, time + 500);
+    setTimeout(function () {
+      for (let j = 0; j < swaps[i][1].length; j++) {
+        arr[index + j].style.background = "red";
+      }
+    }, time - 500);
+    setTimeout(function () {
+      for (let j = 0; j < swaps[i][1].length; j++) {
+        arr[index + j].style.height = swaps[i][1][j];
+      }
+    }, time);
+    setTimeout(function () {
+      for (let j = 0; j < swaps[i][1].length; j++) {
+        arr[index + j].style.background = "yellow";
+      }
+    }, time + 500);
+    time += 1000;
   }
 }
 
@@ -175,12 +195,13 @@ function selectionSort(arr) {
 
 // Merge sort
 function mergeSort(arr, start, end) {
-  console.log("merge sort");
   if (end - start <= 1) {
+    //console.log("check");
     return;
   }
 
-  const middle = Math.floor((end - start) / 2);
+  console.log(end - start);
+  const middle = start + Math.floor((end - start) / 2);
   mergeSort(arr, start, middle);
   mergeSort(arr, middle, end);
 
@@ -202,10 +223,10 @@ function merge(arr, left, middle, end) {
       arr[rightIndex].length,
     );
     if (parseFloat(element2) < parseFloat(element1)) {
-      sortedOrder.push(parseFloat(element2));
+      sortedOrder.push(arr[rightIndex].style.height);
       rightIndex++;
     } else {
-      sortedOrder.push(parseFloat(element1));
+      sortedOrder.push(arr[leftIndex].style.height);
       leftIndex++;
     }
   }
@@ -215,7 +236,7 @@ function merge(arr, left, middle, end) {
       0,
       arr[leftIndex].length,
     );
-    sortedOrder.push(parseFloat(element));
+    sortedOrder.push(arr[leftIndex].style.height);
     leftIndex++;
   }
 
@@ -224,7 +245,7 @@ function merge(arr, left, middle, end) {
       0,
       arr[rightIndex].length,
     );
-    sortedOrder.push(parseFloat(element));
+    sortedOrder.push(arr[rightIndex].style.height);
     rightIndex++;
   }
 
