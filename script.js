@@ -47,6 +47,16 @@ sortButton.addEventListener("click", () => {
   }
 });
 
+function mergeSwap(arr) {
+  let time = 1000;
+  for (let i = 0; i < swaps.length; i++) {
+    let index = swaps[i][0];
+    setTimeout(function () {}, time - 500);
+    setTimeout(function () {}, time);
+    setTimeout(function () {}, time + 500);
+  }
+}
+
 function swapElements(arr) {
   let time = 1000;
   for (let i = 0; i < swaps.length; i++) {
@@ -164,8 +174,61 @@ function selectionSort(arr) {
 }
 
 // Merge sort
-function mergeSort(arr) {
+function mergeSort(arr, start, end) {
   console.log("merge sort");
+  if (end - start <= 1) {
+    return;
+  }
+
+  const middle = Math.floor((end - start) / 2);
+  mergeSort(arr, start, middle);
+  mergeSort(arr, middle, end);
+
+  merge(arr, start, middle, end);
+}
+
+function merge(arr, left, middle, end) {
+  let leftIndex = left;
+  let rightIndex = middle;
+  let sortedOrder = [];
+
+  while (leftIndex < middle && rightIndex < end) {
+    let element1 = arr[leftIndex].style.height.substring(
+      0,
+      arr[leftIndex].length,
+    );
+    let element2 = arr[rightIndex].style.height.substring(
+      0,
+      arr[rightIndex].length,
+    );
+    if (parseFloat(element2) < parseFloat(element1)) {
+      sortedOrder.push(parseFloat(element2));
+      rightIndex++;
+    } else {
+      sortedOrder.push(parseFloat(element1));
+      leftIndex++;
+    }
+  }
+
+  while (leftIndex < middle) {
+    let element = arr[leftIndex].style.height.substring(
+      0,
+      arr[leftIndex].length,
+    );
+    sortedOrder.push(parseFloat(element));
+    leftIndex++;
+  }
+
+  while (rightIndex < end) {
+    let element = arr[rightIndex].style.height.substring(
+      0,
+      arr[rightIndex].length,
+    );
+    sortedOrder.push(parseFloat(element));
+    rightIndex++;
+  }
+
+  swaps.push([left, sortedOrder]);
 }
 
 // Quick sort
