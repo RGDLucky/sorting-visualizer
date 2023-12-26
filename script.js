@@ -49,9 +49,9 @@ sortButton.addEventListener("click", () => {
   }
   //console.log(swaps);
   //console.log(swaps.length);
-  for (let i = 0; i < swaps.length; i++) {
-    console.log(swaps[i]);
-  }
+  //for (let i = 0; i < swaps.length; i++) {
+  //console.log(swaps[i]);
+  //}
 });
 
 function mergeSwap(arr) {
@@ -206,6 +206,11 @@ function mergeSort(arr, start, end) {
   mergeSort(arr, middle, end);
 
   merge(arr, start, middle, end);
+
+  console.log("new sort");
+  for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i].style.height);
+  }
 }
 
 function merge(arr, left, middle, end) {
@@ -247,6 +252,10 @@ function merge(arr, left, middle, end) {
     );
     sortedOrder.push(arr[rightIndex].style.height);
     rightIndex++;
+  }
+
+  for (let i = left; i < sortedOrder.length; i++) {
+    arr[i].style.height = sortedOrder[i];
   }
 
   swaps.push([left, sortedOrder]);
